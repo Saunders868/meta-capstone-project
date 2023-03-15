@@ -1,6 +1,7 @@
-import './App.css';
-import Header from './components/Header';
-import Footer from './components/Footer';
+import "./App.css";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Home from "./screens/Home";
 
 function App() {
   return (
@@ -9,7 +10,7 @@ function App() {
         <Header />
       </header>
       <main>
-
+        <Home />
       </main>
       <footer>
         <Footer />
