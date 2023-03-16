@@ -1,0 +1,26 @@
+.test-card {
+  background-color: white;
+  padding: 24px;
+  border: 1px solid black;
+}
+
+.test-card-images {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+}
+
+.test-card-person {
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  overflow: hidden;
+}
+
+.test-card-desc {
+  margin-top: 40px;
+}
+
+.test-card-name {
+  margin-top: 40px;
+}

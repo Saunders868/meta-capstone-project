@@ -1,0 +1,56 @@
+nav {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 0vw;
+  background-color: white;
+  z-index: 5;
+  overflow: hidden;
+  transition: width 0.6s ease;
+}
+
+nav.active {
+  width: 70vw;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+nav ul li:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+nav ul li {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  transition-delay: 0.6s;
+}
+
+nav.active ul li  {
+  opacity: 1;
+}
+
+nav.desktop {
+  position: relative;
+  width: auto;
+}
+
+nav.desktop ul li {
+  opacity: 1;
+}
+
+nav.desktop ul {
+  flex-direction: row;
+}
+
+nav.desktop ul li:not(:last-child) {
+  margin-bottom: 0;
+  margin-right: 1rem;
+}

@@ -1,6 +1,7 @@
 import React from "react";
 import TestCard from "../components/TestCard";
 import Title from "../components/Title";
+import "../styles/sections/testimonial.css";
 
 const testCardInfo = [
   {
@@ -21,12 +22,12 @@ const testCardInfo = [
 
 const TestimonialsSection = () => {
   return (
-    <section>
+    <section className="container" id="testimonials">
       <div>
-        <Title title="Tesimonials" desc="what customers think about us?" />
+        <Title test title="Tesimonials" desc="what customers think about us?" />
       </div>
 
-      <div>
+      <div className="test-cards">
         {testCardInfo.map((card) => (
           <TestCard
             image={card.image}

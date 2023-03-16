@@ -1,33 +1,43 @@
-import React from "react";import logo from '../assets/Logo.svg'
-import Nav from "./Nav";
+import React from "react";
+import logo from "../assets/Logo.svg";
+import { links } from "./Nav";
+import "../styles/components/footer.css";
 
 const Footer = () => {
   return (
-    <div>
-      <div className="logo">
-        <img src={logo} alt="logo" />
+    <footer>
+      <div className="container footer">
+        <div className="logo">
+          <img src={logo} alt="logo" />
+        </div>
+        <div className="item" >
+          <h3 className="lead-text">Doormat Nav</h3>
+          <ul>
+            {links.map((link) => (
+              <li className="content" key={link.title}>
+                <a href="#">{link.title}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="item">
+          <h3 className="lead-text">Contact</h3>
+          <ul>
+            <li className="content">Address</li>
+            <li className="content">Email</li>
+            <li className="content">Phone</li>
+          </ul>
+        </div>
+        <div className="item">
+          <h3 className="lead-text">Social Links</h3>
+          <ul>
+            <li className="content">Address</li>
+            <li className="content">Email</li>
+            <li className="content">Phone</li>
+          </ul>
+        </div>
       </div>
-      <div>
-        <h3>Doormat Nav</h3>
-        <Nav />
-      </div>
-      <div>
-        <h3>Contact</h3>
-        <ul>
-          <li>Address</li>
-          <li>Email</li>
-          <li>Phone</li>
-        </ul>
-      </div>
-      <div>
-        <h3>Social Links</h3>
-        <ul>
-          <li>Address</li>
-          <li>Email</li>
-          <li>Phone</li>
-        </ul>
-      </div>
-    </div>
+    </footer>
   );
 };
 

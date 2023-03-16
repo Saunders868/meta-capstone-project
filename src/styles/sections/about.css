@@ -1,0 +1,50 @@
+#about {
+  padding: 40px 0;
+}
+
+#about div p {
+  margin-bottom: 40px;
+}
+
+.image-two,
+.image-three {
+  display: none;
+}
+
+@media (min-width: 1440px) {
+  #about {
+    margin-top: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .about-text {
+    width: 40%;
+  }
+
+  .about-images {
+    width: 55%;
+    height: 324px;
+    position: relative;
+  }
+
+  .image-two,
+  .image-three,
+  .image-one {
+    display: block;
+    width: 292px;
+    height: 292px;
+    position: absolute;
+  }
+
+  .image-two {
+    right: 0;
+  }
+
+  .image-three {
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+  }
+}

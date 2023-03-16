@@ -1,7 +1,8 @@
 import React from "react";
+import '../styles/components/button.css'
 
 const Button = ({ text }) => {
-  return <button>{text}</button>;
+  return <button className="lead-text">{text}</button>;
 };
 
 export default Button;

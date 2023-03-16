@@ -1,0 +1,16 @@
+.highlights-title {
+  margin-top: 100px;
+}
+
+#highlights div:first-child button {
+  margin-top: 1rem;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 435px));
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  margin-top: 100px;
+}

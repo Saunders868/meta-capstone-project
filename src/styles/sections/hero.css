@@ -1,0 +1,41 @@
+#hero div img {
+  max-height: 600px;
+}
+
+#hero > p {
+  color: rgba(0, 0, 0, 0.75);
+}
+
+#hero h1 span {
+  border-bottom: 2px solid #000;
+}
+
+#hero h2 {
+  margin-top: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+#hero div p {
+  margin-bottom: 2.5rem;
+}
+
+@media (min-width: 1140px) {
+  #hero {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    margin: 100px 40px 0px 40px;
+    /* border: 1px solid red; */
+  }
+
+  #hero div:first-child {
+    width: 45%;
+    height: 500px;
+    /* border: 1px solid red; */
+  }
+
+  #hero div:nth-child(2) {
+    /* border: 1px solid blue; */
+    width: 50%;
+  }
+}

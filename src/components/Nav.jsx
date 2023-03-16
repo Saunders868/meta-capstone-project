@@ -1,6 +1,7 @@
 import React from "react";
+import "../styles/components/nav.css";
 
-const links = [
+export const links = [
   {
     title: "Home",
     link: "",
@@ -27,12 +28,24 @@ const links = [
   },
 ];
 
-const Nav = () => {
-  return (
-    <nav>
+const Nav = ({ isOpen, isMobile }) => {
+  return isMobile ? (
+    <nav className={isOpen ? "active" : ""}>
       <ul>
         {links.map((link) => (
-          <li key={link.title}>{link.title}</li>
+          <li className="section-title" key={link.title}>
+            <a href="#">{link.title}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  ) : (
+    <nav className="desktop">
+      <ul>
+        {links.map((link) => (
+          <li className="section-title" key={link.title}>
+            <a href="#">{link.title}</a>
+          </li>
         ))}
       </ul>
     </nav>

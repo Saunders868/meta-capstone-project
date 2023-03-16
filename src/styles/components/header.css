@@ -1,0 +1,21 @@
+header {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #000;
+}
+
+header div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 10px;
+  width: 100%;
+}
+
+@media (min-width: 1440px) {
+  header div{
+    margin: 0 20px;
+  }
+}

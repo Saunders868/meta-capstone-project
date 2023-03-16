@@ -1,4 +1,5 @@
 import React from "react";
+import '../styles/components/card.css'
 
 const Card = ({
   image,
@@ -8,22 +9,22 @@ const Card = ({
   cardDesc
 }) => {
   return (
-    <article>
-      <div>
+    <article className="card">
+      <div className="card-image">
         <img src={image} alt={alt} />
       </div>
-      <div>
-        <div>
-          <h3>{cardTitle}</h3>
-          <p>{cardPrice}</p>
+      <div className="card-content">
+        <div className="card-title">
+          <h3 >{cardTitle}</h3>
+          <p >{cardPrice}</p>
         </div>
-        <div>
+        <div className="card-desc content">
           {cardDesc}
         </div>
-        <div>
-          <p>
+        <div className="card-links">
+          <a href="#">
             See more 
-          </p>
+          </a>
         </div>
       </div>
     </article>

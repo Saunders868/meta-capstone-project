@@ -1,0 +1,16 @@
+footer {
+  border-top: 1px solid #000;
+  padding-top: 24px;
+}
+
+footer ul {
+  list-style: none;
+}
+
+.footer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  align-items: start;
+  justify-content: start;
+}

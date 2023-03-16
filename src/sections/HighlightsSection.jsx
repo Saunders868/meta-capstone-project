@@ -6,6 +6,8 @@ import greekSalad from "../assets/greek salad.jpg";
 import bruchetta from "../assets/bruchetta.svg";
 import lemonDessert from "../assets/lemon dessert.jpg";
 
+import "../styles/sections/highlights.css";
+
 const cardsInfo = [
   {
     image: greekSalad,
@@ -32,13 +34,13 @@ const cardsInfo = [
 
 const HighlightsSection = () => {
   return (
-    <section>
-      <div>
+    <section className="container" id="highlights">
+      <div className="highlights-title">
         <Title title="Specials" desc="What’s on the Menu?" />
         <Button text="Order Online" />
       </div>
 
-      <div>
+      <div className="cards">
         {cardsInfo.map((card) => (
           <Card
             image={card.image}
