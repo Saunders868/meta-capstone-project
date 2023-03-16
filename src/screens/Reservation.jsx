@@ -5,7 +5,7 @@ import FormSection from "../sections/FormSection";
 const Reservation = () => {
   return (
     <>
-      <HeroSection />
+      <HeroSection button={false} />
       <FormSection />
     </>
   );

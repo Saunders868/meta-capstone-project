@@ -4,7 +4,7 @@ import Button from "../components/Button";
 
 import '../styles/sections/hero.css'
 
-const HeroSection = () => {
+const HeroSection = ({ button }) => {
   return (
     <section className="container" id="hero">
       <div>
@@ -22,7 +22,7 @@ const HeroSection = () => {
           donec. Pellentesque egestas semper condimentum eget orci iaculis
           volutpat pellentesque. Nisi quis sed iaculis.
         </p>
-        <Button text='Book a Table' />
+        {button ? <Button link='reservation' text='Book a Table' /> : null}
       </div>
     </section>
   );

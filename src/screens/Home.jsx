@@ -7,7 +7,7 @@ import AboutSection from "../sections/AboutSection";
 const Home = () => {
   return (
     <>
-      <HeroSection />
+      <HeroSection button={true} />
       <HighlightsSection />
       <TestimonialsSection />
       <AboutSection />

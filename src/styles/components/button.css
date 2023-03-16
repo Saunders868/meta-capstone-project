@@ -12,3 +12,9 @@ button {
 button:hover {
   scale: 0.9;
 }
+
+button.inverse {
+  border: 2px solid #495E57;
+  background-color: white;
+  color: #495E57;
+}

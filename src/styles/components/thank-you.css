@@ -1,0 +1,11 @@
+.thanks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 64px 0;
+}
+
+.thanks h2, .thanks p {
+  margin-bottom: 24px;
+}

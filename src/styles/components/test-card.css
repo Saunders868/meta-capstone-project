@@ -6,7 +6,7 @@
 
 .test-card-images {
   display: flex;
-  align-items: end;
+  align-items: flex-end;
   justify-content: space-between;
 }
 
@@ -17,10 +17,6 @@
   overflow: hidden;
 }
 
-.test-card-desc {
-  margin-top: 40px;
-}
-
-.test-card-name {
+.test-card-desc, .test-card-name {
   margin-top: 40px;
 }

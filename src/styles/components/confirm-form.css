@@ -1,0 +1,47 @@
+
+.back-button {
+  width: 60px;
+  height: 60px;
+}
+
+.confirm-input-group {
+  margin-top: 32px;
+  position: relative;
+}
+
+.confirm-input-group input {
+  display: block;
+  width: 100%;
+  border: none;
+  outline: none;
+  border-bottom: 1.5px solid black;
+  padding: 5px;
+  transition: 0.6s ease all;
+}
+
+.confirm-input-group input:focus {
+  border-bottom: 1px solid #0275d8;
+}
+
+.confirm-form-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.confirm-form-buttons button:first-child {
+  margin-bottom: 24px;
+}
+
+@media (min-width: 1440px) {
+  .confirm-form-buttons {
+    flex-direction: row;
+    justify-content: start;
+  }
+
+  .confirm-form-buttons button:first-child {
+    margin-bottom: 0;
+    margin-right: 24px;
+  }
+}

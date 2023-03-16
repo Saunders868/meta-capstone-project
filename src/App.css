@@ -80,6 +80,7 @@ resuable classes
   font-family: var(--secondary-font);
   font-size: var(--content);
   font-weight: normal;
+  line-height: 1;
 }
 
 .logo {

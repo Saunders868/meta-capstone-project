@@ -1,5 +1,5 @@
 .highlights-title {
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 #highlights div:first-child button {
@@ -13,4 +13,11 @@
   align-items: center;
   justify-content: center;
   margin-top: 100px;
+}
+
+@media (min-width: 1440px) {
+  .highlights-title {
+    display: flex;
+    justify-content: space-between;
+  }
 }

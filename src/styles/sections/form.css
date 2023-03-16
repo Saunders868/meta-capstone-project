@@ -1,0 +1,117 @@
+select,
+input[type="time"],
+input[type="date"] {
+  border: 1px solid black;
+  transition: all 0.6s ease;
+  padding: 2px;
+}
+
+option {
+  font-family: inherit;
+}
+
+input[type="date"],
+input[type="time"] {
+  font-family: "Karla", sans-serif;
+  font-size: 1rem;
+}
+
+input[type="select"]:focus,
+input[type="time"]:focus{
+  border: 1px solid #0275d8;
+  color: #0275d8;
+  outline: none;
+}
+
+select:checked {
+  background: linear-gradient(#5A2569, #5A2569);
+}
+
+.progress-indicator {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.progress-indicator .circle {
+  width: 30px !important;
+  height: 30px;
+  border: 2px solid black;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.6s ease;
+}
+
+.progress-indicator .circle .inner-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  background-color: black;
+  transition: all 0.6s ease;
+}
+
+.progress-indicator.complete .circle {
+  border: 2px solid #5cb85c;
+}
+
+.progress-indicator.complete .circle .inner-circle {
+  background-color: #5cb85c;
+}
+
+.progress-indicator .line {
+  flex: 1;
+  height: 2px;
+  background-color: black;
+  transition: all 0.6s ease;
+}
+
+.progress-indicator.complete .line {
+  background-color: #5cb85c;
+}
+
+.form-title {
+  margin-bottom: 64px;
+}
+
+.progress-indicator {
+  margin-bottom: 50px;
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.form-group:not(:first-child) {
+  margin-top: 64px;
+}
+
+.form-button {
+  margin: 64px 0;
+}
+
+.error {
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: -15px;
+  color: #d9534f;
+  border-bottom: none;
+}
+
+@media (min-width: 1440px) {
+  form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 64px;
+  }
+
+  .form-group {
+    margin-top: 64px;
+  }
+}

@@ -22,7 +22,7 @@
 @media (min-width: 1140px) {
   #hero {
     display: flex;
-    align-items: start;
+    align-items: flex-start;
     justify-content: space-between;
     margin: 100px 40px 0px 40px;
     /* border: 1px solid red; */

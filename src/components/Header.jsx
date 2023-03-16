@@ -28,7 +28,7 @@ const Header = () => {
         <div className="logo">
           <img src={logo} alt="logo" />
         </div>
-        {isMobile ? <AiOutlineMenu onClick={toggleNav} size={24} style={{zIndex: '10'}} /> : null}
+        {isMobile ? <AiOutlineMenu onClick={toggleNav} size={24} style={{zIndex: '10', cursor: 'pointer'}} /> : null}
         <Nav isMobile={isMobile} isOpen={isOpen} />
       </div>
     </header>
