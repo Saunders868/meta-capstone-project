@@ -1,40 +1,44 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../styles/components/nav.css";
 
 export const links = [
   {
     title: "Home",
-    link: "",
+    link: "/",
   },
   {
     title: "About",
-    link: "",
+    link: "/#about",
   },
   {
     title: "Menu",
-    link: "",
+    link: "/#highlights",
   },
   {
     title: "Reservations",
-    link: "",
+    link: "/reservation",
   },
   {
     title: "Order Online",
-    link: "",
+    link: "/",
   },
   {
     title: "Login",
-    link: "",
+    link: "/",
   },
 ];
 
-const Nav = ({ isOpen, isMobile }) => {
+const Nav = ({ isOpen, isMobile, setIsOpen }) => {
+  const closeNav = () => {
+    setIsOpen(false);
+  };
   return isMobile ? (
     <nav className={isOpen ? "active" : ""}>
       <ul>
         {links.map((link) => (
           <li className="section-title" key={link.title}>
-            <a href="#">{link.title}</a>
+            <Link onClick={closeNav} to={link.link}>{link.title}</Link>
           </li>
         ))}
       </ul>
@@ -44,7 +48,7 @@ const Nav = ({ isOpen, isMobile }) => {
       <ul>
         {links.map((link) => (
           <li className="section-title" key={link.title}>
-            <a href="#">{link.title}</a>
+            <Link to={link.link}>{link.title}</Link>
           </li>
         ))}
       </ul>
