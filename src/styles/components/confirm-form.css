@@ -4,6 +4,10 @@
   height: 60px;
 }
 
+.back-button img {
+  cursor: pointer;
+}
+
 .confirm-input-group {
   margin-top: 32px;
   position: relative;

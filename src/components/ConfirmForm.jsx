@@ -6,35 +6,53 @@ import "../styles/components/confirm-form.css";
 const ConfirmForm = ({ setProgress, formik }) => {
   return (
     <>
-      <div onClick={() => setProgress("begin")} className="back-button">
+      <div
+        onClick={() => setProgress("begin")}
+        style={{
+          cursor: "pointer",
+        }}
+        className="back-button"
+      >
         <img src={button} alt="back button" />
       </div>
       <form onSubmit={formik.handleSubmit}>
         <div className="confirm-input-group">
-          <label className="section-title" htmlFor="name">
+          <label
+            aria-label="give us the name for the reservation"
+            className="section-title"
+            htmlFor="name"
+          >
             Name:
           </label>
           <input
             type="text"
             id="name"
+            name="name"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.name}
+            aria-describedby="name"
           />
           {formik.touched.name && formik.errors.name ? (
             <p className="error">{formik.errors.name}</p>
           ) : null}
         </div>
         <div className="confirm-input-group">
-          <label className="section-title" htmlFor="email">
+          <label
+            aria-label="give us the email for the reservation"
+            className="section-title"
+            htmlFor="email"
+          >
             Email:
           </label>
           <input
             type="email"
             id="email"
+            name="email"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.email}
+            aria-describedby="email"
           />
           {formik.touched.email && formik.errors.email ? (
             <p className="error">{formik.errors.email}</p>
@@ -42,8 +60,12 @@ const ConfirmForm = ({ setProgress, formik }) => {
         </div>
 
         <div className="form-button confirm-form-buttons">
-          <Button text="Confirm Reservation" />
           <Button
+            ariaLabel="Confirm your Reservation"
+            text="Confirm Reservation"
+          />
+          <Button
+            ariaLabel="Cancel your reservation"
             text="Cancel Reservation"
             inverse
             onClick={() => setProgress("begin")}

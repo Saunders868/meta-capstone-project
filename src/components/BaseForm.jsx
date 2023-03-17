@@ -5,7 +5,7 @@ const BaseForm = ({ formik }) => {
   return (
     <form onSubmit={formik.handleSubmit}>
       <div className="form-group">
-        <label className="section-title" htmlFor="date">
+        <label aria-label="choose a date for the reservation" className="section-title" htmlFor="date">
           Date:
         </label>
         <input
@@ -15,13 +15,14 @@ const BaseForm = ({ formik }) => {
           value={formik.values.date}
           name="date"
           id="date"
+          aria-describedby="date"
         />
         {formik.touched.date && formik.errors.date ? (
           <p className="error">{formik.errors.date}</p>
         ) : null}
       </div>
       <div className="form-group">
-        <label className="section-title" htmlFor="time">
+        <label aria-label="select a time for the reservation" className="section-title" htmlFor="time">
           Select Time:
         </label>
         <select
@@ -29,6 +30,7 @@ const BaseForm = ({ formik }) => {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.time}
+          aria-describedby="time"
         >
           <option>17:00</option>
           <option>18:00</option>
@@ -42,7 +44,7 @@ const BaseForm = ({ formik }) => {
         ) : null}
       </div>
       <div className="form-group">
-        <label className="section-title" htmlFor="diners">
+        <label aria-label="choose the number of diners for the reservation" className="section-title" htmlFor="diners">
           Number of Diners:
         </label>
         <select
@@ -52,6 +54,7 @@ const BaseForm = ({ formik }) => {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.diners}
+          aria-describedby="diners"
         >
           <option value="1">1</option>
           <option value="2">2</option>
@@ -69,7 +72,7 @@ const BaseForm = ({ formik }) => {
         ) : null}
       </div>
       <div className="form-group">
-        <label className="section-title" htmlFor="occasion">
+        <label aria-label="choose an occassion for the reservation" className="section-title" htmlFor="occasion">
           Occasion:
         </label>
         <select
@@ -79,6 +82,7 @@ const BaseForm = ({ formik }) => {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.occasion}
+          aria-describedby="occasion"
         >
           <option value="birthday">Birthday</option>
           <option value="anniversary">Anniversary</option>
@@ -90,7 +94,7 @@ const BaseForm = ({ formik }) => {
       </div>
 
       <div className="form-button">
-        <Button text="Book a Table" />
+        <Button ariaLabel="book a table" text="Book a Table" />
       </div>
     </form>
   );
