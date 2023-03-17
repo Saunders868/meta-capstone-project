@@ -10,23 +10,14 @@ import {
   firstValidationSchema,
   secondValidationSchema,
 } from "../validationSchema";
-import moment from "moment";
 import { FIRST_FORM, SECOND_FORM } from "../actions";
-import { formReducer } from "../reducers";
-const date = new Date();
-
-const initialState = {
-  time: "17:00",
-  date: `${moment(date).format("YYYY-MM-d")}`,
-  diners: 1,
-  occasion: "birthday",
-  name: "",
-  email: "",
-};
+import { formReducer, initializeTimes, updateTimes } from "../reducers";
+import { availableTimesInitialState, initialState } from "../data";
 
 const FormSection = () => {
   const [progress, setProgress] = useState("begin");
   const [state, dispatch] = useReducer(formReducer, initialState);
+  const [availableTimes, dispatchAvailableTimes] = useReducer(updateTimes, availableTimesInitialState, initializeTimes);
 
   const formik = useFormik({
     initialValues: {
@@ -101,7 +92,7 @@ const FormSection = () => {
         </div>
       </div>
 
-      {progress === "begin" ? <BaseForm formik={formik} /> : null}
+      {progress === "begin" ? <BaseForm availableTimes={availableTimes} dispatchAvailableTimes={dispatchAvailableTimes} formik={formik} /> : null}
 
       {progress === "confirm" ? (
         <ConfirmForm setProgress={setProgress} formik={formikSecond} />
