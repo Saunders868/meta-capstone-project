@@ -2,6 +2,7 @@ import React from "react";
 import logo from "../assets/Logo.svg";
 import { links } from "./Nav";
 import "../styles/components/footer.css";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -15,7 +16,7 @@ const Footer = () => {
           <ul>
             {links.map((link) => (
               <li className="content" key={link.title}>
-                <a href="#">{link.title}</a>
+                <Link to={link.link}>{link.title}</Link>
               </li>
             ))}
           </ul>
