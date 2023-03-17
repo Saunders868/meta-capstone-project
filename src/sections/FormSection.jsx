@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useReducer, useState } from "react";
 import BaseForm from "../components/BaseForm";
 import Title from "../components/Title";
 
@@ -11,6 +11,8 @@ import {
   secondValidationSchema,
 } from "../validationSchema";
 import moment from "moment";
+import { FIRST_FORM, SECOND_FORM } from "../actions";
+import { formReducer } from "../reducers";
 const date = new Date();
 
 const initialState = {
@@ -23,7 +25,8 @@ const initialState = {
 };
 
 const FormSection = () => {
-  const [form, setForm] = useState(initialState);
+  const [progress, setProgress] = useState("begin");
+  const [state, dispatch] = useReducer(formReducer, initialState);
 
   const formik = useFormik({
     initialValues: {
@@ -35,14 +38,14 @@ const FormSection = () => {
     validationSchema: firstValidationSchema,
     onSubmit: (values) => {
       setProgress("confirm");
-      alert(JSON.stringify(values, null, 2));
-      setForm({
-        ...form,
+      // alert(JSON.stringify(values, null, 2));
+      dispatch({
+        type: FIRST_FORM,
         time: values.time,
         date: values.date,
         diners: parseInt(values.diners),
         occasion: values.occasion,
-      });
+      })
     },
   });
 
@@ -54,16 +57,18 @@ const FormSection = () => {
     validationSchema: secondValidationSchema,
     onSubmit: (values) => {
       setProgress("complete");
-      alert(JSON.stringify(values, null, 2));
-      setForm({
-        ...form,
+      // alert(JSON.stringify(values, null, 2));
+      dispatch({
+        type: SECOND_FORM,
+        time: state.time,
+        date: state.date,
+        diners: state.diners,
+        occasion: state.occasion,
         name: values.name,
         email: values.email,
-      });
+      })
     },
   });
-
-  const [progress, setProgress] = useState("begin");
 
   return (
     <section className="container" id="form">
@@ -103,7 +108,7 @@ const FormSection = () => {
       ) : null}
 
       {progress === "complete" ? (
-        <ThankYou setProgress={setProgress} form={form} />
+        <ThankYou setProgress={setProgress} form={state} />
       ) : null}
     </section>
   );
