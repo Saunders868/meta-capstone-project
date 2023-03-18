@@ -23,7 +23,7 @@ const FormSection = () => {
     initialValues: {
       time: "17:00",
       date: "",
-      diners: 1,
+      diners: "1",
       occasion: "birthday",
     },
     validationSchema: firstValidationSchema,
@@ -37,6 +37,7 @@ const FormSection = () => {
         diners: parseInt(values.diners),
         occasion: values.occasion,
       })
+      formik.resetForm()
     },
   });
 
@@ -58,6 +59,7 @@ const FormSection = () => {
         name: values.name,
         email: values.email,
       })
+      formikSecond.resetForm()
     },
   });
 
