@@ -41,13 +41,23 @@ test("The Hero component is being rendered in the reservation page", () => {
 
 describe("Function testing", () => {
   it("checking the initializeTimes function", () => {
-    const times = initializeTimes(availableTimesInitialState);
+    const date = new Date();
+    const times = initializeTimes(date);
 
-    expect(times).toBe(availableTimesInitialState);
+    expect(times).toStrictEqual([
+      "17:00",
+      "17:30",
+      "19:30",
+      "20:00",
+      "21:30",
+      "22:30",
+      "23:00",
+      "23:30",
+    ]);
   });
 
   it("checking the updateTimes function", () => {
-    const times = initializeTimes(availableTimesInitialState);
+    const times = initializeTimes(new Date());
     const state = updateTimes(times, { type: TIME });
 
     expect(times).toBe(state);
@@ -75,7 +85,7 @@ describe("Form Testing", () => {
       </Router>
     );
 
-    // const date = screen.getByLabelText("Date:");
+    const date = screen.getByLabelText("Date:");
     const time = screen.getByLabelText("Select Time:");
     const diners = screen.getByLabelText("Number of Diners:");
     const occasion = screen.getByLabelText("Occasion:");
@@ -83,11 +93,12 @@ describe("Form Testing", () => {
     // await fireEvent.change(date, {
     //   target: { value: "2023-04-03" }
     // });
+    await userEvent.type(date, "2023-03-18");
     await userEvent.type(time, "17:00");
     await userEvent.type(diners, "1");
     await userEvent.type(occasion, "birthday");
 
-    // expect(date).toHaveValue("2023-04-03");
+    // expect(date).toHaveValue("2023-03-18");
     expect(time).toHaveValue("17:00");
     expect(diners).toHaveValue("1");
     expect(occasion).toHaveValue("birthday");

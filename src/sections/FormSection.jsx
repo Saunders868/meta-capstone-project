@@ -10,18 +10,34 @@ import {
   firstValidationSchema,
   secondValidationSchema,
 } from "../validationSchema";
-import { FIRST_FORM, SECOND_FORM } from "../actions";
+import { REMOVE_TIME, SECOND_FORM_ADD } from "../actions";
 import { formReducer, initializeTimes, updateTimes } from "../reducers";
-import { availableTimesInitialState, initialState } from "../data";
+import { initialState } from "../data";
+import BookedSlot from "../components/BookedSlot";
+
+const date = new Date();
 
 const FormSection = () => {
   const [progress, setProgress] = useState("begin");
   const [state, dispatch] = useReducer(formReducer, initialState);
-  const [availableTimes, dispatchAvailableTimes] = useReducer(updateTimes, availableTimesInitialState, initializeTimes);
+  const [availableTimes, dispatchAvailableTimes] = useReducer(
+    updateTimes,
+    date,
+    initializeTimes
+  );
+  console.log(state);
+  const [formData, setFormData] = useState({
+    time: "",
+    date: "",
+    diners: 0,
+    occasion: "",
+    name: "",
+    email: "",
+  });
 
   const formik = useFormik({
     initialValues: {
-      time: "17:00",
+      time: "",
       date: "",
       diners: "1",
       occasion: "birthday",
@@ -29,15 +45,19 @@ const FormSection = () => {
     validationSchema: firstValidationSchema,
     onSubmit: (values) => {
       setProgress("confirm");
-      // alert(JSON.stringify(values, null, 2));
-      dispatch({
-        type: FIRST_FORM,
+      alert(JSON.stringify(values, null, 2));
+      dispatchAvailableTimes({
+        type: REMOVE_TIME,
+        time: values.time,
+      });
+      // store form data from first form in local state
+      setFormData({
         time: values.time,
         date: values.date,
         diners: parseInt(values.diners),
         occasion: values.occasion,
-      })
-      formik.resetForm()
+      });
+      formik.resetForm();
     },
   });
 
@@ -50,16 +70,22 @@ const FormSection = () => {
     onSubmit: (values) => {
       setProgress("complete");
       // alert(JSON.stringify(values, null, 2));
+      // use local state form data to update reducer
       dispatch({
-        type: SECOND_FORM,
-        time: state.time,
-        date: state.date,
-        diners: state.diners,
-        occasion: state.occasion,
+        type: SECOND_FORM_ADD,
+        time: formData.time,
+        date: formData.date,
+        diners: formData.diners,
+        occasion: formData.occasion,
         name: values.name,
         email: values.email,
-      })
-      formikSecond.resetForm()
+      });
+      setFormData({
+        ...formData,
+        name: values.name,
+        email: values.email,
+      });
+      formikSecond.resetForm();
     },
   });
 
@@ -67,6 +93,10 @@ const FormSection = () => {
     <section className="container" id="form">
       <div className="form-title">
         <Title title="Make Reservation" />
+      </div>
+
+      <div className="booked-slots container">
+        <BookedSlot data={state} />
       </div>
 
       <div
@@ -94,14 +124,22 @@ const FormSection = () => {
         </div>
       </div>
 
-      {progress === "begin" ? <BaseForm availableTimes={availableTimes} dispatchAvailableTimes={dispatchAvailableTimes} formik={formik} /> : null}
+      {progress === "begin" ? (
+        <BaseForm availableTimes={availableTimes} formik={formik} />
+      ) : null}
 
       {progress === "confirm" ? (
-        <ConfirmForm setProgress={setProgress} formik={formikSecond} />
+        <ConfirmForm
+          setProgress={setProgress}
+          time={formData.time}
+          dispatchAvailableTimes={dispatchAvailableTimes}
+          dispatchUsers={dispatch}
+          formik={formikSecond}
+        />
       ) : null}
 
       {progress === "complete" ? (
-        <ThankYou setProgress={setProgress} form={state} />
+        <ThankYou setProgress={setProgress} form={formData} />
       ) : null}
     </section>
   );

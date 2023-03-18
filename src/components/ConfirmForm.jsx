@@ -2,12 +2,26 @@ import React from "react";
 import button from "../assets/backButton.png";
 import Button from "./Button";
 import "../styles/components/confirm-form.css";
+import { ADD_TIME, SECOND_FORM_REMOVE } from "../actions";
 
-const ConfirmForm = ({ setProgress, formik }) => {
+const ConfirmForm = ({ setProgress, formik, time, dispatchAvailableTimes, dispatchUsers }) => {
+
+  const handleCancel = () => {
+    setProgress('begin');
+    dispatchAvailableTimes({
+      type: ADD_TIME,
+      time: time
+    })
+    dispatchUsers({
+      type: SECOND_FORM_REMOVE,
+      time: time
+    })
+
+  }
   return (
     <>
       <div
-        onClick={() => setProgress("begin")}
+        onClick={handleCancel}
         style={{
           cursor: "pointer",
         }}
@@ -68,7 +82,7 @@ const ConfirmForm = ({ setProgress, formik }) => {
             ariaLabel="Cancel your reservation"
             text="Cancel Reservation"
             inverse
-            onClick={() => setProgress("begin")}
+            onClick={handleCancel}
           />
         </div>
       </form>

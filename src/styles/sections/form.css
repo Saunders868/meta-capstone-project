@@ -104,6 +104,30 @@ select:checked {
   border-bottom: none;
 }
 
+.booked-slots {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.booked-slots ul {
+  list-style: none;
+}
+
+.booked-slots ul li {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.booked-slots ul li:not(:first-child) {
+  margin-top: 1rem;
+}
+
+.booked-slots ul li p:not(:first-child) {
+  display: flex;
+  align-items: center;
+  margin-left: 1rem;
+}
+
 @media (min-width: 1440px) {
   form {
     display: grid;

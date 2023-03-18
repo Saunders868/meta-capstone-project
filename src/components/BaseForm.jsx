@@ -1,15 +1,8 @@
 import React from "react";
-import { TIME } from "../actions";
 import Button from "./Button";
 
-const BaseForm = ({ formik, availableTimes, dispatchAvailableTimes }) => {
-
-  function customHandleChange(e) {
-    formik.handleChange(e)
-    dispatchAvailableTimes({
-      type: TIME
-    })
-  }
+const BaseForm = ({ formik, availableTimes }) => {
+  const date = new Date()
   return (
     <form onSubmit={formik.handleSubmit}>
       <div className="form-group">
@@ -22,11 +15,12 @@ const BaseForm = ({ formik, availableTimes, dispatchAvailableTimes }) => {
         </label>
         <input
           type="date"
-          onChange={customHandleChange}
+          onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.date}
           name="date"
           id="date"
+          min={date.toISOString().split('T')[0]}
           aria-describedby="date"
         />
         {formik.touched.date && formik.errors.date ? (
@@ -48,8 +42,9 @@ const BaseForm = ({ formik, availableTimes, dispatchAvailableTimes }) => {
           value={formik.values.time}
           aria-describedby="time"
         >
+          <option value='none'>none</option>
           {availableTimes.map((time) => (
-            <option key={time}>{time}</option>
+            <option key={time} value={time}>{time}</option>
           ))}
         </select>
         {formik.touched.time && formik.errors.time ? (
