@@ -11,6 +11,7 @@ export function formReducer(state, action) {
         occasion: action.occasion,
         name: action.name,
         email: action.email,
+        id: action.id
       }];
     }
     case SECOND_FORM_REMOVE: {

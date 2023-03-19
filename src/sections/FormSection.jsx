@@ -1,6 +1,7 @@
 import React, { useReducer, useState } from "react";
 import BaseForm from "../components/BaseForm";
 import Title from "../components/Title";
+import { v4 as uuidv4 } from 'uuid';
 
 import "../styles/sections/form.css";
 import ConfirmForm from "../components/ConfirmForm";
@@ -28,6 +29,7 @@ const FormSection = () => {
     occasion: "",
     name: "",
     email: "",
+    id: ''
   });
   const [state, dispatch] = useReducer(formReducer, initialState);
   const [availableTimes, dispatchAvailableTimes] = useReducer(
@@ -82,11 +84,13 @@ const FormSection = () => {
           occasion: formData.occasion,
           name: values.name,
           email: values.email,
+          id: uuidv4(),
         });
         setFormData({
           ...formData,
           name: values.name,
           email: values.email,
+          id: uuidv4(),
         });
         formikSecond.resetForm();
       }

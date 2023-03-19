@@ -1,5 +1,6 @@
 import React from "react";
 import { BsFillCalendarFill, BsClockFill, BsPeopleFill } from "react-icons/bs";
+import { IoIosWine } from "react-icons/io";
 
 const BookedSlot = ({ data }) => {
   if (data.length < 1) {
@@ -8,7 +9,7 @@ const BookedSlot = ({ data }) => {
   return (
     <ul>
       {data.map((reservation) => (
-        <li key={reservation.time}>
+        <li key={reservation.id}>
           <p className="section-title">{reservation.name}</p>
           <p className="content">
             {" "}
@@ -35,6 +36,20 @@ const BookedSlot = ({ data }) => {
               }}
             />{" "}
             {reservation.diners}
+          </p>
+          <p
+            style={{
+              textTransform: "capitalize",
+            }}
+            className="content"
+          >
+            {" "}
+            <IoIosWine
+              style={{
+                marginRight: "5px",
+              }}
+            />{" "}
+            {reservation.occasion}
           </p>
         </li>
       ))}
