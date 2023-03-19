@@ -30,7 +30,7 @@ export function updateTimes(state, action) {
       return state.filter((t) => t !== action.time);
     }
     case TIME: {
-      return state
+      return fetchAPI(action.date)
     }
     default:
       throw Error("Unknown action: " + action.type);

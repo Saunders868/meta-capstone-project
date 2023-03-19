@@ -14,18 +14,13 @@ import { REMOVE_TIME, SECOND_FORM_ADD } from "../actions";
 import { formReducer, initializeTimes, updateTimes } from "../reducers";
 import { initialState } from "../data";
 import BookedSlot from "../components/BookedSlot";
+import { submitAPI } from "../api";
 
 const date = new Date();
 
 const FormSection = () => {
   const [progress, setProgress] = useState("begin");
-  const [state, dispatch] = useReducer(formReducer, initialState);
-  const [availableTimes, dispatchAvailableTimes] = useReducer(
-    updateTimes,
-    date,
-    initializeTimes
-  );
-  console.log(state);
+  // const [formResult, setFormResult] = useState(false);
   const [formData, setFormData] = useState({
     time: "",
     date: "",
@@ -34,6 +29,12 @@ const FormSection = () => {
     name: "",
     email: "",
   });
+  const [state, dispatch] = useReducer(formReducer, initialState);
+  const [availableTimes, dispatchAvailableTimes] = useReducer(
+    updateTimes,
+    date,
+    initializeTimes
+  );
 
   const formik = useFormik({
     initialValues: {
@@ -45,7 +46,7 @@ const FormSection = () => {
     validationSchema: firstValidationSchema,
     onSubmit: (values) => {
       setProgress("confirm");
-      alert(JSON.stringify(values, null, 2));
+      // alert(JSON.stringify(values, null, 2));
       dispatchAvailableTimes({
         type: REMOVE_TIME,
         time: values.time,
@@ -67,25 +68,28 @@ const FormSection = () => {
       email: "",
     },
     validationSchema: secondValidationSchema,
-    onSubmit: (values) => {
-      setProgress("complete");
-      // alert(JSON.stringify(values, null, 2));
-      // use local state form data to update reducer
-      dispatch({
-        type: SECOND_FORM_ADD,
-        time: formData.time,
-        date: formData.date,
-        diners: formData.diners,
-        occasion: formData.occasion,
-        name: values.name,
-        email: values.email,
-      });
-      setFormData({
-        ...formData,
-        name: values.name,
-        email: values.email,
-      });
-      formikSecond.resetForm();
+    onSubmit: async (values) => {
+      const result = await submitAPI(formData);
+      if (result === true) {
+        setProgress("complete");
+        // alert(JSON.stringify(values, null, 2));
+        // use local state form data to update reducer
+        dispatch({
+          type: SECOND_FORM_ADD,
+          time: formData.time,
+          date: formData.date,
+          diners: formData.diners,
+          occasion: formData.occasion,
+          name: values.name,
+          email: values.email,
+        });
+        setFormData({
+          ...formData,
+          name: values.name,
+          email: values.email,
+        });
+        formikSecond.resetForm();
+      }
     },
   });
 
@@ -125,7 +129,11 @@ const FormSection = () => {
       </div>
 
       {progress === "begin" ? (
-        <BaseForm availableTimes={availableTimes} formik={formik} />
+        <BaseForm
+          availableTimes={availableTimes}
+          dispatchAvailableTimes={dispatchAvailableTimes}
+          formik={formik}
+        />
       ) : null}
 
       {progress === "confirm" ? (

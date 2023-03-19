@@ -1,8 +1,19 @@
 import React from "react";
+import { TIME } from "../actions";
 import Button from "./Button";
 
-const BaseForm = ({ formik, availableTimes }) => {
-  const date = new Date()
+const BaseForm = ({ formik, availableTimes, dispatchAvailableTimes }) => {
+  const date = new Date();
+
+  function handleChange(e) {
+    formik.handleChange(e)
+    var stringify = e.target.value;
+    const date = new Date(stringify); 
+    dispatchAvailableTimes({
+      type: TIME,
+      date: date
+    })
+  }
   return (
     <form onSubmit={formik.handleSubmit}>
       <div className="form-group">
@@ -15,7 +26,7 @@ const BaseForm = ({ formik, availableTimes }) => {
         </label>
         <input
           type="date"
-          onChange={formik.handleChange}
+          onChange={handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.date}
           name="date"

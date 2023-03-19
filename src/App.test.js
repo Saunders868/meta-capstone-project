@@ -57,16 +57,19 @@ describe("Function testing", () => {
   });
 
   it("checking the updateTimes function", () => {
-    const times = initializeTimes(new Date());
-    const state = updateTimes(times, { type: TIME });
+    var stringify = "2023-04-03";
+    const date = new Date(stringify); 
+    const times = initializeTimes(date);
+    const state = updateTimes(times, { type: TIME, date: date });
 
-    expect(times).toBe(state);
+    expect(times).toStrictEqual(state);
   });
 });
 
 describe("Form Testing", () => {
   it("checking base form", async () => {
     const handleSubmit = jest.fn();
+    const dispatchAvailableTimes = jest.fn();
     const { result } = renderHook(() =>
       useFormik({
         initialValues: {
@@ -81,7 +84,7 @@ describe("Form Testing", () => {
     const formik = result.current;
     render(
       <Router>
-        <BaseForm formik={formik} availableTimes={availableTimesInitialState} />
+        <BaseForm formik={formik} availableTimes={availableTimesInitialState} dispatchAvailableTimes={dispatchAvailableTimes} />
       </Router>
     );
 
@@ -90,15 +93,15 @@ describe("Form Testing", () => {
     const diners = screen.getByLabelText("Number of Diners:");
     const occasion = screen.getByLabelText("Occasion:");
 
-    // await fireEvent.change(date, {
-    //   target: { value: "2023-04-03" }
-    // });
-    await userEvent.type(date, "2023-03-18");
+    await fireEvent.change(date, {
+      dispatchAvailableTimes,
+      target: { value: "2023-04-03" },
+    });
     await userEvent.type(time, "17:00");
     await userEvent.type(diners, "1");
     await userEvent.type(occasion, "birthday");
 
-    // expect(date).toHaveValue("2023-03-18");
+    // expect(date).toHaveValue("2023-04-03");
     expect(time).toHaveValue("17:00");
     expect(diners).toHaveValue("1");
     expect(occasion).toHaveValue("birthday");
